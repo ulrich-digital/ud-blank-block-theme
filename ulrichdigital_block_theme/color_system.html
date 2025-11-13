@@ -4,13 +4,36 @@
   <meta charset="UTF-8">
   <title>Statusfarben Systeme</title>
   <style>
+    :root {
+      --theme-50:  #ebf3e8;
+      --theme-100: #dfefd9;
+      --theme-200: #b9e4b9;
+      --theme-300: #7fcb86;
+      --theme-400: #53ac59;
+      --theme-500: #3e8e41;
+      --theme-600: #1e6e21;
+      --theme-700: #155217;
+      --theme-800: #0e3d10;
+      --theme-900: #082d0a;
+
+  --theme-100: #e6f4ea;
+  --theme-200: #c8e6c9;
+  --theme-300: #a5d6a7;
+  --theme-400: #81c784;
+  --theme-500: #34a853;
+  --theme-600: #2e7d32;
+  --theme-700: #1b5e20;
+  --theme-800: #0d3b24;
+  --theme-900: #08351a;
+    }
+
     body { font-family: sans-serif; margin: 2rem; background:#f9f9f9; color:#333; }
     h1 { margin-bottom:1rem; }
     h2 { margin-top:2rem; }
     h3 { margin-top:1rem; }
     .palette {
       display: grid;
-      grid-template-columns: repeat(9, 1fr);
+      grid-template-columns: repeat(10, 1fr);
       gap: 4px;
       margin-bottom: 1.5rem;
     }
@@ -29,6 +52,20 @@
   </style>
 </head>
 <body>
+
+<h1>Theme (Grün)</h1>
+<div class="palette">
+  <div class="swatch light" style="background:var(--theme-50)">--theme-50<span>#f3f8f1</span></div>
+  <div class="swatch light" style="background:var(--theme-100)">--theme-100<span>#dfefd9</span></div>
+  <div class="swatch light" style="background:var(--theme-200)">--theme-200<span>#b9e4b9</span></div>
+  <div class="swatch light" style="background:var(--theme-300)">--theme-300<span>#7fcb86</span></div>
+  <div class="swatch" style="background:var(--theme-400)">--theme-400<span>#53ac59</span></div>
+  <div class="swatch" style="background:var(--theme-500)">--theme-500<span>#3e8e41</span></div>
+  <div class="swatch" style="background:var(--theme-600)">--theme-600<span>#1e6e21</span></div>
+  <div class="swatch" style="background:var(--theme-700)">--theme-700<span>#155217</span></div>
+  <div class="swatch" style="background:var(--theme-800)">--theme-800<span>#0e3d10</span></div>
+  <div class="swatch" style="background:var(--theme-900)">--theme-900<span>#082d0a</span></div>
+</div>
 
 <h1>Statusfarben – Systemvergleich</h1>
 
