@@ -88,16 +88,19 @@ Empfohlene Lösung bleibt weiterhin gültig:
 [https://henry.codes/writing/how-to-convert-variable-ttf-font-files-to-woff2/](https://henry.codes/writing/how-to-convert-variable-ttf-font-files-to-woff2/)
 
 ```bash
+# Öffne ein Terminal und wechsle in ein beliebiges Verzeichnis (z. B. ~/Sites)
+cd ~/Downloads
+# Repo rekursiv klonen (inkl. Brotli-Abhängigkeit)
 git clone --recursive https://github.com/google/woff2.git
+# In den geklonten Ordner wechseln
 cd woff2
+# woff2 und Abhängigkeiten bauen
+make clean all
+# TTF in WOFF2 komprimieren (Beispiel: Datei aus ~/Downloads)
+./woff2_compress ~/Downloads/variable-font.ttf
+# Ausgabe zeigt den Pfad und die komprimierte Dateigröße – die WOFF2-Datei ist nun einsatzbereit
 ```
 
-In the woff2 directory:
-
-```
-make clean all 
-./woff2_compress path-to-font/variable-font.ttf
-```
 </details>
 
 
