@@ -1,4 +1,4 @@
-# ulrichdigital Block Theme
+# UD Theme: Blank Block Theme
 
 Ein modulares Full-Site-Editing-Theme für WordPress, optimiert für die Blockentwicklung mit sass-Build-Prozess, variable Webfonts und benutzerdefinierte Farb- und Typografie-Vorgaben.
 
