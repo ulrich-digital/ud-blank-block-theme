@@ -95,7 +95,7 @@ add_action( 'login_enqueue_scripts', 'my_login_logo' );
 function my_login_logo() { ?>
     <style type="text/css">
         #login h1 a, .login h1 a {
-            background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/BG_logo_rgb.svg);
+            background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/ulrich_digital_schriftzug_inter.svg);
             padding-bottom: 60px;
             width:320px;
             background-repeat: no-repeat;
