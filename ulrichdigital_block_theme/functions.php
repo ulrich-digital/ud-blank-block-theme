@@ -576,4 +576,15 @@ if(!is_admin()):
         return array_merge($classes, array('is_frontend'));
     });
 endif;
+
+
+/* =============================================================== *\
+   404 Redirect
+\* =============================================================== */
+add_action( 'template_redirect', function() {
+    if ( is_404() ) {
+        wp_safe_redirect( home_url() );
+        exit;
+    }
+} );
 ?>
