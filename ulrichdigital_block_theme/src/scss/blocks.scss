@@ -1,0 +1,10 @@
+/* =============================================================== *\
+   Blocks (Frontend + Editor)
+
+   Enthält:
+   - Styles für WordPress Core Blocks
+   - Erweiterungen über Block-Styles (is-style-*)
+   - Gilt im Frontend und im Editor
+\* =============================================================== */
+
+@use "blocks/wordpress-native";

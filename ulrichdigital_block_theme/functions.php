@@ -2,12 +2,12 @@
 /* =============================================================== *\
    WP-Head
 \* =============================================================== */
-add_action('wp_head', function(){ ?>
-	<meta name="viewport" content="width=device-width" />
-	<meta name="robots" content="index, follow">
+add_action('wp_head', function () { ?>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="index, follow">
 
-	<!-- Standard SEO -->
-	<!--
+    <!-- Standard SEO -->
+    <!--
 	<meta name="zipcode" content="6430">
 	<meta name="city" content="Schwyz">
 	<meta name="country" content="CH">
@@ -22,23 +22,23 @@ add_action('wp_head', function(){ ?>
 	<meta name="audience" content="Profis">
 	-->
 
-	<!-- Dublin Core basic info -->
-	<!--
+    <!-- Dublin Core basic info -->
+    <!--
 	<meta name="DC.Creator" content="ulrich.digital">
 	<meta name="DC.Publisher" content="Matthias Ulrich">
 	<meta name="DC.Rights" content="ulrich.digital">
 	<meta name="DC.Description" content="Webagentur für Webdesign, WordPress, WooCommerce, Online Shops und SEO | Digitalagentur & Webagentur Schwyz | Hier entsteht Ihre Webseite mit ♥">
 	<meta name="DC.Language" content="de">
 	-->
-	<!-- Facebook OpenGraph -->
-	<!--
+    <!-- Facebook OpenGraph -->
+    <!--
 	<meta property="og:type" content="website" />
 	<meta property="og:locale" content="de_DE" />
 	<meta property="og:title" content="ulrich.digital | Hier entsteht Ihre Webseite" />
 	<meta property="og:description" content="Wollen Sie ultimatives Motorräder-Fahrgefühl und einen starken Partner an Ihrer Seite? Kommen Sie bei uns in Ebikon, Luzern vorbei." />
 	<meta property="og:site_name" content="ulrich.digital" />
 	-->
-	<?php
+<?php
 
 });
 
@@ -46,58 +46,128 @@ add_action('wp_head', function(){ ?>
 /* =============================================================== *\
    Google-Analytics only on LiveSite
 \* =============================================================== */
-if("https://HIER_DIE_LIVE_SITE_URL_EINTRAGEN" == get_home_url()):
-	add_action( 'wp_head', 'add_google_analytics_tag');
+if ("https://HIER_DIE_LIVE_SITE_URL_EINTRAGEN" == get_home_url()):
+    add_action('wp_head', 'add_google_analytics_tag');
 endif;
 
-function add_google_analytics_tag(){ ?>
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-HD9HZ7TQTN"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-		gtag('config', 'G-HD9HZ7TQTN');
-	</script>
+function add_google_analytics_tag() { ?>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HD9HZ7TQTN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-HD9HZ7TQTN');
+    </script>
 <?php }
 
 
 /* =============================================================== *\
    Add Core-Block-Styles
 \* =============================================================== */
-if ( ! function_exists( 'uldi_add_block_styles' ) ) :
-	function uldi_add_block_styles() {
-		add_theme_support( 'wp-block-styles' );
-	}
+if (! function_exists('uldi_add_block_styles')) :
+    function uldi_add_block_styles() {
+        add_theme_support('wp-block-styles');
+    }
 endif;
 //add_action( 'after_setup_theme', 'uldi_add_block_styles' );
 
 
+
 /* =============================================================== *\
-   Add Admin-Styles
+   Add Styles
 \* =============================================================== */
-add_action('enqueue_block_assets', function () {
-    if (is_admin()) {
-        wp_enqueue_style(
-            'admin-styles',
-            get_template_directory_uri() . '/style-admin.css',
-            [],
-            filemtime(get_template_directory() . '/style-admin.css')
-        );
-    }
+
+/* Frontend only */
+add_action('wp_enqueue_scripts', function () {
+	wp_enqueue_style(
+		'ud-theme-style',
+		get_stylesheet_directory_uri() . '/build/style.css',
+		array(),
+		filemtime(get_stylesheet_directory() . '/build/style.css')
+	);
 });
 
+/* Frontend + Editor */
+add_action('enqueue_block_assets', function () {
+
+	wp_enqueue_style(
+		'ud-fontawesome',
+		get_stylesheet_directory_uri() . '/assets/libs/fontawesome/fontawesome.bundle.css',
+		array(),
+		filemtime(get_stylesheet_directory() . '/assets/libs/fontawesome/fontawesome.bundle.css')
+	);
+
+	wp_enqueue_style(
+		'ud-block-styles',
+		get_stylesheet_directory_uri() . '/build/blocks.css',
+		array(),
+		filemtime(get_stylesheet_directory() . '/build/blocks.css')
+	);
+
+    /* Editor only */
+	if (is_admin()) {
+		wp_enqueue_style(
+			'ud-editor-styles',
+			get_stylesheet_directory_uri() . '/build/editor.css',
+			array(),
+			filemtime(get_stylesheet_directory() . '/build/editor.css')
+		);
+	}
+});
+
+/* =============================================================== *\
+   Add Scripts
+\* =============================================================== */
+
+/* Frontend */
+add_action('wp_enqueue_scripts', function () {
+    wp_enqueue_script(
+        'ud-theme-frontend',
+        get_stylesheet_directory_uri() . '/build/frontend.js',
+        array(),
+        filemtime(get_stylesheet_directory() . '/build/frontend.js'),
+        true
+    );
+
+    wp_enqueue_script(
+        'ud-theme-development',
+        get_stylesheet_directory_uri() . '/build/development.js',
+        array(),
+        filemtime(get_stylesheet_directory() . '/build/development.js'),
+        true
+    );
+});
+
+/* Editor */
+add_action('enqueue_block_editor_assets', function () {
+    wp_enqueue_script(
+        'ud-theme-editor',
+        get_stylesheet_directory_uri() . '/build/editor.js',
+        array(
+            'wp-blocks',
+            'wp-dom-ready',
+            'wp-data',
+        ),
+        filemtime(get_stylesheet_directory() . '/build/editor.js'),
+        true
+    );
+});
 
 /* =============================================================== *\
    Custom Admin-Logo
 \* =============================================================== */
-add_action( 'login_enqueue_scripts', 'my_login_logo' );
+add_action('login_enqueue_scripts', 'my_login_logo');
 function my_login_logo() { ?>
     <style type="text/css">
-        #login h1 a, .login h1 a {
+        #login h1 a,
+        .login h1 a {
             background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/ulrich_digital_schriftzug_inter.svg);
             padding-bottom: 60px;
-            width:320px;
+            width: 320px;
             background-repeat: no-repeat;
             background-size: 250px auto;
         }
@@ -105,109 +175,92 @@ function my_login_logo() { ?>
 <?php }
 
 
-/* =============================================================== *\ 
-   Custom Admin-Logo link to Home URL 
+/* =============================================================== *\
+   Custom Admin-Logo link to Home URL
 \* =============================================================== */
 function my_login_logo_url() {
     return home_url();
 }
-add_filter( 'login_headerurl', 'my_login_logo_url' );
+add_filter('login_headerurl', 'my_login_logo_url');
 
 
 /* =============================================================== *\
  	 Custom-Logo
 \* =============================================================== */
-  //add_theme_support( 'custom-logo' );
-  function uldi_custom_logo_setup() {
+//add_theme_support( 'custom-logo' );
+function uldi_custom_logo_setup() {
     $defaults = array(
         'height'               => 100,
         'width'                => 400,
         'flex-height'          => true,
         'flex-width'           => true,
-        'header-text'          => array( 'site-title', 'site-description' ),
+        'header-text'          => array('site-title', 'site-description'),
         'unlink-homepage-logo' => false,
     );
 
-    add_theme_support( 'custom-logo', $defaults );
+    add_theme_support('custom-logo', $defaults);
 }
-add_action( 'after_setup_theme', 'uldi_custom_logo_setup' );
+add_action('after_setup_theme', 'uldi_custom_logo_setup');
 
-function get_custom_logo_callback( $html ) {
-    if ( has_custom_logo() ) {
+function get_custom_logo_callback($html) {
+    if (has_custom_logo()) {
         return $html;
     } else {
         return '<h3>Logo</h3>';
     }
 }
-add_filter( 'get_custom_logo', 'get_custom_logo_callback' );
+add_filter('get_custom_logo', 'get_custom_logo_callback');
 
-
-/* =============================================================== *\
-   Add Backend Scripts
-\* =============================================================== */
-function uldi_enqueue_backend_scripts(){
-	$gsdu = get_stylesheet_directory_uri() . "/assets/js/";
-	$gtd = get_template_directory() . "/assets/js/";
-
-	//$path_h0 = 'jquery-ui.min.js';
-    $path_h1 = 'customize_editor.js';
-    $path_h4 = 'ulrich_admin.js';
-
-    //wp_enqueue_script( 'eigener_Name', pfad_zum_js, abhaengigkeit (zb jquery zuerst laden), versionsnummer, bool (true=erst im footer laden) );
-	wp_enqueue_script( 'customize_editor',  $gsdu . $path_h1, array('jquery'), filemtime( $gtd. $path_h1 ), true );
-	wp_enqueue_script( 'ulrich_admin',  $gsdu . $path_h4, array('jquery'), filemtime( $gtd. $path_h4 ), true );
-}
-add_action( "admin_enqueue_scripts", 'uldi_enqueue_backend_scripts');
 
 
 /* =============================================================== *\
    Bildqualität für generierte Bilder festlegen
     (betrifft Thumbnails, Medium, Large etc.)
 \* =============================================================== */
-add_filter( 'image_editor_output_format', function( $formats ) {
+add_filter('image_editor_output_format', function ($formats) {
     return [
         'image/jpeg' => 'image/avif',
-		'image/webp' => 'image/avif',
+        'image/webp' => 'image/avif',
         'image/png'  => 'image/avif',
     ];
 });
 
-add_filter( 'wp_editor_set_quality', function( $quality, $mime_type ) {
-    if ( 'image/avif' === $mime_type ) {
+add_filter('wp_editor_set_quality', function ($quality, $mime_type) {
+    if ('image/avif' === $mime_type) {
         return 90; // AVIF: Hohe Qualität, trotzdem kleine Dateien
     }
-    if ( 'image/webp' === $mime_type ) {
+    if ('image/webp' === $mime_type) {
         return 95;
     }
-    if ( 'image/jpeg' === $mime_type ) {
+    if ('image/jpeg' === $mime_type) {
         return 85;
     }
     return $quality;
-}, 10, 2 );
+}, 10, 2);
 
 
 /* =============================================================== *\
    Add custom image sizes
 \* =============================================================== */
 function ud_add_custom_image_sizes() {
-	//add_image_size('neuer_bilder_slug', 800, 600, true);
+    //add_image_size('neuer_bilder_slug', 800, 600, true);
 }
 //add_action('after_setup_theme', 'ud_add_custom_image_sizes', 11);
 
 
-/* =============================================================== *\ 
+/* =============================================================== *\
    Disable image size threshold
 \* =============================================================== */
 add_filter('big_image_size_threshold', '__return_false');
 
 
-/* =============================================================== *\ 
+/* =============================================================== *\
    Add custom image sizes to backend choose
 \* =============================================================== */
 function ud_add_custom_image_sizes_to_backend_choose($sizes) {
     $custom_sizes = array(
         'neuer_bilder_slug' => __('Neuer Bilderslug', 'uldi')
-        );
+    );
     return array_merge($sizes, $custom_sizes);
 }
 //add_filter('image_size_names_choose', 'ud_add_custom_image_sizes_to_backend_choose');
@@ -216,21 +269,21 @@ function ud_add_custom_image_sizes_to_backend_choose($sizes) {
 /* =============================================================== *\
    Enable SVG
 \* =============================================================== */
-function ud_add_svg_to_upload_mimes($upload_mimes){
-	$upload_mimes['svg'] = 'image/svg+xml';
-	$upload_mimes['svgz'] = 'image/svg+xml';
-	return $upload_mimes;
+function ud_add_svg_to_upload_mimes($upload_mimes) {
+    $upload_mimes['svg'] = 'image/svg+xml';
+    $upload_mimes['svgz'] = 'image/svg+xml';
+    return $upload_mimes;
 }
 add_filter('upload_mimes', 'ud_add_svg_to_upload_mimes');
 
 
-/* =============================================================== *\ 
+/* =============================================================== *\
    Add Custom Admin Footer
-\* =============================================================== */ 
-function backend_entwickelt_mit_herz( $text ) {
-	return ('<span style="color:black;">Entwickelt mit </span><span style="color: red;font-size:20px;vertical-align:-3px">&hearts;</span><span style="color:black;"</span><span> von <a href="https://ulrich.digital" target="_blank">ulrich.digital</a></span>' );
+\* =============================================================== */
+function backend_entwickelt_mit_herz($text) {
+    return ('<span style="color:black;">Entwickelt mit </span><span style="color: red;font-size:20px;vertical-align:-3px">&hearts;</span><span style="color:black;"</span><span> von <a href="https://ulrich.digital" target="_blank">ulrich.digital</a></span>');
 }
-add_filter( 'admin_footer_text', 'backend_entwickelt_mit_herz' );
+add_filter('admin_footer_text', 'backend_entwickelt_mit_herz');
 
 
 /* =============================================================== *\
@@ -314,15 +367,15 @@ function example_admin_bar_remove_logo() {
     $wp_admin_bar->remove_menu( 'comments' );
     $wp_admin_bar->remove_menu( 'new-content' );
     $wp_admin_bar->remove_menu( 'archive' );
-       
+
 }
 add_action( 'wp_before_admin_bar_render', 'example_admin_bar_remove_logo', 0 );
 */
 
 
-/* =============================================================== *\ 
+/* =============================================================== *\
    Remove Admin-Menu-Elements
-\* =============================================================== */ 
+\* =============================================================== */
 /*
 function ud_remove_menus () {
 	global $menu;
@@ -379,7 +432,7 @@ function ud_register_post_type_neufarzeuge(){
 */
 
 
-/* =============================================================== *\ 
+/* =============================================================== *\
    Add Custom Block Category to Inserter
 \* =============================================================== */
 /*
@@ -463,7 +516,7 @@ function block_template_neufahrzeug() {
 add_action( 'init', 'block_template_neufahrzeug' );
 */
 
-/* =============================================================== *\ 
+/* =============================================================== *\
    Allowed-Blocks
 \* =============================================================== */
 function blacklist_blocks($allowed_blocks, $editor_context) {
@@ -542,17 +595,18 @@ function blacklist_blocks($allowed_blocks, $editor_context) {
    Add Frontend JavaScripts
    Add Frontend CSS
 \* =============================================================== */
-function ud_enqueue_frontend_scripts(){
+/*
+function ud_enqueue_frontend_scripts() {
     //wp_dequeue_style('global-styles'); // Core-Block-Styles entfernen Achtung, entfernt auch Schrift über theme.json
     // wp_dequeue_style( 'wp-block-columns' ); // einzelne Core-Block-Styles entfernen
     // wp_dequeue_style('wp-block-column');
 
-	// Fontawesome, inkl. Brands, Normal und Sharp (duotone ist auskommentiert)
-	wp_enqueue_style( 'fontawesome_bundle', get_template_directory_uri() . '/assets/fonts/fontawesome.bundle.css', [], filemtime( get_stylesheet_directory() . "/assets/fonts/fontawesome.bundle.css" ) );
+    // Fontawesome, inkl. Brands, Normal und Sharp (duotone ist auskommentiert)
+    wp_enqueue_style('fontawesome_bundle', get_template_directory_uri() . '/assets/fonts/fontawesome.bundle.css', [], filemtime(get_stylesheet_directory() . "/assets/fonts/fontawesome.bundle.css"));
     wp_enqueue_style('ud-style-main', get_stylesheet_directory_uri() . "/css/style.css", [], filemtime(get_stylesheet_directory() . "/css/style.css"));
 
-	$gsdu = get_stylesheet_directory_uri() . "/assets/js/";
-	$gtd = get_template_directory() . "/assets/js/";
+    $gsdu = get_stylesheet_directory_uri() . "/assets/js/";
+    $gtd = get_template_directory() . "/assets/js/";
 
     $path_h1 = 'isotope.pkgd.min.js';
     $path_h5 = 'ulrich_digital.js';
@@ -561,17 +615,17 @@ function ud_enqueue_frontend_scripts(){
     //wp_enqueue_script( 'eigener_Name', pfad_zum_js, abhaengigkeit (zb jquery zuerst laden), versionsnummer, bool (true=erst im footer laden) );
     wp_enqueue_script('jquery');
     wp_enqueue_script('gsap',  $gsdu . $path_gsap, array('jquery'), filemtime($gtd . $path_gsap), false);
-    wp_enqueue_script( 'isotope',  $gsdu . $path_h1, array('jquery'), filemtime( $gtd. $path_h1 ), false );
+    wp_enqueue_script('isotope',  $gsdu . $path_h1, array('jquery'), filemtime($gtd . $path_h1), false);
     wp_enqueue_script('ulrich_digital',  $gsdu . $path_h5, array('jquery'), filemtime($gtd . $path_h5), true);
 }
 add_action('wp_enqueue_scripts', 'ud_enqueue_frontend_scripts');
+*/
 
 
-
-/* =============================================================== *\ 
+/* =============================================================== *\
    Title
 \* =============================================================== */
-if(!is_admin()):
+if (!is_admin()):
     add_filter('body_class', function ($classes) {
         return array_merge($classes, array('is_frontend'));
     });
@@ -581,10 +635,10 @@ endif;
 /* =============================================================== *\
    404 Redirect
 \* =============================================================== */
-add_action( 'template_redirect', function() {
-    if ( is_404() ) {
-        wp_safe_redirect( home_url() );
+add_action('template_redirect', function () {
+    if (is_404()) {
+        wp_safe_redirect(home_url());
         exit;
     }
-} );
+});
 ?>

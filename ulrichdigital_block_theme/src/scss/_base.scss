@@ -1,0 +1,18 @@
+@use "variables";
+
+/* =============================================================== *\
+   Basis HTML-Elemente
+\* =============================================================== */
+body {
+	background: variables.$color-background;
+
+	font-family: "Inter", sans-serif;
+	font-size: var(--wp--preset--font-size--base);
+	color: variables.$color-text;
+	font-optical-sizing: auto;
+	font-kerning: normal;
+	font-feature-settings: "kern" 1;
+
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}

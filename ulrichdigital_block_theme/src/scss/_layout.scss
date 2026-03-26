@@ -1,0 +1,63 @@
+@use "variables";
+
+/* =============================================================== *\
+   Layout
+\* =============================================================== */
+.entry-content {
+	padding-right: var(--ud-site-inline-spacing);
+	padding-left: var(--ud-site-inline-spacing);
+}
+
+
+/* =============================================================== *\
+   Seitentitel und Content-Abstand
+\* =============================================================== */
+body {
+	.wp-site-blocks {
+		.wp-block-post-title {
+			margin-top: clamp(200px, 10vw, 180px);
+			margin-right: auto;
+			margin-bottom: 5.5rem;
+			margin-left: auto;
+			padding-right: var(--ud-site-inline-spacing);
+			padding-left: var(--ud-site-inline-spacing);
+			max-width: var(--wp--style--global--content-size);
+		}
+
+		> .entry-content.wp-block-post-content {
+			margin-top: clamp(200px, 10vw, 180px);
+		}
+
+		> .wp-block-post-title + .entry-content.wp-block-post-content {
+			margin-top: 0;
+		}
+	}
+}
+
+
+/* =============================================================== *\
+   Überschriften im Content
+\* =============================================================== */
+.entry-content > .wp-block-heading {
+	margin-top: 2.75rem;
+	margin-bottom: 5.5rem;
+}
+
+.entry-content > h3.wp-block-heading {
+	margin-top: 2rem;
+	margin-bottom: 3.5rem;
+}
+
+.entry-content > .wp-block-heading:first-child {
+	margin-top: 0;
+}
+
+
+/* =============================================================== *\
+   Listen im Content
+\* =============================================================== */
+.entry-content ul {
+	margin-left: 1.25rem;
+	list-style: disc;
+}
+

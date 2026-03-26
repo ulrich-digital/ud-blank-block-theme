@@ -1,0 +1,64 @@
+/* =============================================================== *\
+   Variablen (Farben, Spacing, Radius, Shadow)
+\* =============================================================== */
+
+:root {
+    /* Theme Colors */
+    --ud-theme-100: #ffffff;
+    --ud-theme-200: #f7f6f3;
+    --ud-theme-300: #eeece6;
+    --ud-theme-400: #e2dfd6;
+    --ud-theme-500: #cfcbbf;
+    --ud-theme-600: #b5b1a4;
+    --ud-theme-700: #8f8b80;
+    --ud-theme-800: #6c6860;
+    --ud-theme-900: #4a4741;
+
+    /* Highlight Colors */
+    --ud-highlight-100: #e6f7f8;
+    --ud-highlight-200: #c8eef1;
+    --ud-highlight-300: #9fe0e6;
+    --ud-highlight-400: #63cdd8;
+    --ud-highlight-500: #1fb6c9;
+    --ud-highlight-600: #1695a5;
+    --ud-highlight-700: #117580;
+    --ud-highlight-800: #0b555c;
+    --ud-highlight-900: #06373b;
+
+    /* Shadows */
+	--ud-shadow-100: 0 1px 2px rgba(0, 0, 0, 0.06);
+	--ud-shadow-200: 0 1px 3px rgba(0, 0, 0, 0.08);
+	--ud-shadow-300: 0 2px 4px rgba(0, 0, 0, 0.1);
+	--ud-shadow-400: 0 3px 6px rgba(0, 0, 0, 0.12);
+	--ud-shadow-500: 0 4px 8px rgba(0, 0, 0, 0.14);
+	--ud-shadow-700: 0 6px 12px rgba(0, 0, 0, 0.18);
+	--ud-shadow-900: 0 8px 16px rgba(0, 0, 0, 0.22);
+
+    /* Radius */
+    --ud-radius-100: 8px;
+    --ud-radius-200: 10px;
+    --ud-radius-300: 12px;
+    --ud-radius-400: 18px;
+    --ud-radius-500: 24px;
+    --ud-radius-600: 36px;
+    --ud-radius-700: 42px;
+    --ud-radius-800: 48px;
+    --ud-radius-900: 1000px;
+
+    /* Theme Layout */
+	--ud-site-inline-spacing: 60px;
+}
+
+/* =============================================================== *\
+   Anpassungen für Mobile (Variablen)
+\* =============================================================== */
+@media screen and (max-width: 800px) {
+	:root {
+		--ud-site-inline-spacing: 30px;
+	}
+}
+
+
+$color-text: var(--ud-theme-100);
+$color-background: var(--ud-theme-800);
+$color-footer: var(--ud-theme-900);

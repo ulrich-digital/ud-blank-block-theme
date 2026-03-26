@@ -1,0 +1,487 @@
+@charset "UTF-8";
+/* =============================================================== *\
+   Variablen
+\* =============================================================== */
+/* =============================================================== *\
+   Variablen (Farben, Spacing, Radius, Shadow)
+\* =============================================================== */
+:root {
+  /* Theme Colors */
+  --ud-theme-100: #ffffff;
+  --ud-theme-200: #f7f6f3;
+  --ud-theme-300: #eeece6;
+  --ud-theme-400: #e2dfd6;
+  --ud-theme-500: #cfcbbf;
+  --ud-theme-600: #b5b1a4;
+  --ud-theme-700: #8f8b80;
+  --ud-theme-800: #6c6860;
+  --ud-theme-900: #4a4741;
+  /* Highlight Colors */
+  --ud-highlight-100: #e6f7f8;
+  --ud-highlight-200: #c8eef1;
+  --ud-highlight-300: #9fe0e6;
+  --ud-highlight-400: #63cdd8;
+  --ud-highlight-500: #1fb6c9;
+  --ud-highlight-600: #1695a5;
+  --ud-highlight-700: #117580;
+  --ud-highlight-800: #0b555c;
+  --ud-highlight-900: #06373b;
+  /* Shadows */
+  --ud-shadow-100: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --ud-shadow-200: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --ud-shadow-300: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --ud-shadow-400: 0 3px 6px rgba(0, 0, 0, 0.12);
+  --ud-shadow-500: 0 4px 8px rgba(0, 0, 0, 0.14);
+  --ud-shadow-700: 0 6px 12px rgba(0, 0, 0, 0.18);
+  --ud-shadow-900: 0 8px 16px rgba(0, 0, 0, 0.22);
+  /* Radius */
+  --ud-radius-100: 8px;
+  --ud-radius-200: 10px;
+  --ud-radius-300: 12px;
+  --ud-radius-400: 18px;
+  --ud-radius-500: 24px;
+  --ud-radius-600: 36px;
+  --ud-radius-700: 42px;
+  --ud-radius-800: 48px;
+  --ud-radius-900: 1000px;
+  /* Theme Layout */
+  --ud-site-inline-spacing: 60px;
+}
+
+/* =============================================================== *\
+   Anpassungen für Mobile (Variablen)
+\* =============================================================== */
+@media screen and (max-width: 800px) {
+  :root {
+    --ud-site-inline-spacing: 30px;
+  }
+}
+/* =============================================================== *\
+   Reset & Base
+\* =============================================================== */
+/* =============================================================== *\
+   CSS-Reset
+\* =============================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  -webkit-font-smoothing: subpixel-antialiased; /* Safari, Chrome */
+  -moz-osx-font-smoothing: auto; /* Firefox (kein subpixel support, aber auto ≈ subpixel) */
+  text-rendering: optimizeLegibility; /* Optional: bessere Kerning/Lesbarkeit */
+  text-size-adjust: 100%;
+  line-height: 1.5;
+}
+
+body {
+  line-height: inherit;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  margin: 0;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul[role=list],
+ol[role=list] {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, ol, figure, blockquote, dl, dd {
+  margin: 0;
+  padding: 0;
+}
+
+strong {
+  font-weight: bold;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: currentColor;
+}
+
+blockquote {
+  margin: 0;
+  padding-left: 1.5rem;
+  border-left: 4px solid currentColor;
+}
+
+:focus {
+  outline: 2px solid #000;
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* =============================================================== *\ 
+   Input-Elemente
+\* =============================================================== */
+/* Entfernt die Autofill-Hintergrundfarbe und -Textfarbe, um den Stil des Inputs zu übernehmen */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px transparent inset !important; /* Setzt den Autofill-Hintergrund auf transparent */
+  -webkit-text-fill-color: inherit !important; /* Vererbt die Textfarbe */
+}
+
+/* Entfernt die Pfeile (Spinners) in WebKit-basierten Browsern (Chrome, Safari, Edge) */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Entfernt die Pfeile in Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Dropdown-Pfeil bei select-Elementen */
+/* Entfernt den Standard-Pfeil in WebKit-basierten Browsern */
+select::-webkit-inner-spin-button,
+select::-webkit-appearance {
+  -webkit-appearance: none;
+}
+
+/* Entfernt den Standard-Pfeil in Firefox */
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /*font-size: 100%;"*/
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  /*line-height: 1;*/
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* =============================================================== *\ 
+   Form-Reset
+\* =============================================================== */
+input,
+select,
+textarea,
+button {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 100%;
+}
+
+/* =============================================================== *\
+   Variablen
+\* =============================================================== */
+/* =============================================================== *\
+   Basis HTML-Elemente
+\* =============================================================== */
+body {
+  background: var(--ud-theme-800);
+  font-family: "Inter", sans-serif;
+  font-size: var(--wp--preset--font-size--base);
+  color: var(--ud-theme-100);
+  font-optical-sizing: auto;
+  font-kerning: normal;
+  font-feature-settings: "kern" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =============================================================== *\
+   Layout & Struktur
+\* =============================================================== */
+/* =============================================================== *\
+   Variablen
+\* =============================================================== */
+/* =============================================================== *\
+   Layout
+\* =============================================================== */
+.entry-content {
+  padding-right: var(--ud-site-inline-spacing);
+  padding-left: var(--ud-site-inline-spacing);
+}
+
+/* =============================================================== *\
+   Seitentitel und Content-Abstand
+\* =============================================================== */
+body .wp-site-blocks .wp-block-post-title {
+  margin-top: clamp(200px, 10vw, 180px);
+  margin-right: auto;
+  margin-bottom: 5.5rem;
+  margin-left: auto;
+  padding-right: var(--ud-site-inline-spacing);
+  padding-left: var(--ud-site-inline-spacing);
+  max-width: var(--wp--style--global--content-size);
+}
+body .wp-site-blocks > .entry-content.wp-block-post-content {
+  margin-top: clamp(200px, 10vw, 180px);
+}
+body .wp-site-blocks > .wp-block-post-title + .entry-content.wp-block-post-content {
+  margin-top: 0;
+}
+
+/* =============================================================== *\
+   Überschriften im Content
+\* =============================================================== */
+.entry-content > .wp-block-heading {
+  margin-top: 2.75rem;
+  margin-bottom: 5.5rem;
+}
+
+.entry-content > h3.wp-block-heading {
+  margin-top: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.entry-content > .wp-block-heading:first-child {
+  margin-top: 0;
+}
+
+/* =============================================================== *\
+   Listen im Content
+\* =============================================================== */
+.entry-content ul {
+  margin-left: 1.25rem;
+  list-style: disc;
+}
+
+/* =============================================================== *\
+   Variablen
+\* =============================================================== */
+/* =============================================================== *\
+   Header
+\* =============================================================== */
+header.wp-block-template-part {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  z-index: 1000;
+  box-sizing: border-box;
+  padding-right: 64px;
+  padding-left: 64px;
+  width: 100%;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: transform 0.28s ease;
+}
+header.wp-block-template-part > .wp-block-group {
+  width: 100%;
+}
+header.wp-block-template-part {
+  /* Hauptnavigation */
+}
+header.wp-block-template-part li a {
+  text-transform: uppercase;
+  letter-spacing: 0.25rem;
+  font-size: 18px;
+  color: var(--ud-theme-500);
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+header.wp-block-template-part li a:hover {
+  color: var(--ud-theme-600);
+  transform: scale(1.05);
+}
+
+header.wp-block-template-part.is-hidden {
+  transform: translateY(-100%);
+}
+
+/* =============================================================== *\
+   Variablen
+\* =============================================================== */
+/* =============================================================== *\
+   Footer
+\* =============================================================== */
+footer {
+  border: 1px solid var(--ud-theme-900);
+}
+
+/* =============================================================== *\
+   Variablen
+\* =============================================================== */
+/* =============================================================== *\
+   Page-Styles
+\* =============================================================== */
+/* =============================================================== *\
+   Plugins
+\* =============================================================== */
+/* =============================================================== *\
+   Variablen
+\* =============================================================== */
+/* =============================================================== *\
+   Name des Plugins
+\* =============================================================== */

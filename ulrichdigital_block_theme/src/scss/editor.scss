@@ -1,0 +1,16 @@
+/* =============================================================== *\
+   Editor Styles
+
+   Nur für den Block-Editor (Backend).
+
+   Zweck:
+   - Darstellung im Editor anpassen
+   - UI-Korrekturen
+   - Editor-spezifisches Verhalten
+
+   Keine:
+   - Frontend-Styles
+   - Doppeldefinitionen aus frontend.scss
+\* =============================================================== */
+
+@use "editor/admin";
