@@ -1,116 +1,51 @@
 # UD Theme: Blank Block Theme
 
-Ein modulares Full-Site-Editing-Theme für WordPress, optimiert für die Blockentwicklung mit sass-Build-Prozess, variable Webfonts und benutzerdefinierte Farb- und Typografie-Vorgaben.
+Ein modulares Full-Site-Editing-Theme für WordPress, optimiert für die Blockentwicklung mit Build-Prozess für CSS und JavaScript sowie einer klaren src/build-Struktur.
 
 ## Funktionen
 - Vollständig kompatibel mit WordPress Full Site Editing (FSE)
 - Eigene Farbpalette und Verlaufsdefinitionen
-- Integration der variablen Schrift Rubik UD (normal & italic, 400–700)
+- Integration von Webfonts über `theme.json`
 - Unterstützt benutzerdefinierte Templates (z. B. Single ohne Titel)
-- Sass-basierter Build-Prozess mit npm-Scripts build und watch
+- Strukturierter Build-Prozess für SCSS und JavaScript
 
+## Projektstruktur
+```text
+/src        → Entwicklungsdateien (SCSS, JS)
+/build      → kompilierte Assets (CSS, JS)
+/assets     → statische Dateien (Fonts, Bilder etc.)
+/templates  → Block-Templates
+/parts      → Template Parts
+```
 
-## Technische Hinweise
-- Entwickelt mit Sass (via npm run build / npm run watch)
-- Schrift-Einbindung und Typografie-Voreinstellungen in theme.json
-- Variable Fonts werden als WOFF2 im Ordner assets/fonts/ verwaltet
-- Layout-Breiten: contentSize: 100%, wideSize: 1000px
-- Unterstützte Einheiten: px, em, rem, vw, %
 
 ## Build-Prozess
-```
-# CSS einmalig kompilieren
+
+```bash
+# Assets einmalig bauen
 npm run build
 
-# Automatische Überwachung bei der Entwicklung
+# Watch-Modus für Entwicklung
 npm run watch
 ```
 
+- SCSS wird zu CSS kompiliert
+- JavaScript wird gebündelt und optimiert
+- Ausgabe erfolgt ausschliesslich im `/build`-Verzeichnis
 
+## Technische Hinweise
 
-## Hinweise zu Variable Fonts
-Frühere Probleme in WordPress 6.0 betrafen die Kombination mehrerer Font-Weights in einer einzigen `fontFace`-Deklaration (insbesondere in Chrome).
-Empfohlene Lösung bleibt weiterhin gültig:
-- **Jede Schriftstärke separat** in `theme.json` deklarieren
-- **Einzigartigen Fontnamen** verwenden, der sicher nicht systemweit installiert ist
-<details>
-<summary>Beispiel-JSON</summary>
-
-```json
-{
-    "version": 2,
-    "customTemplates":[],
-    "settings": {
-        "typography": {
-            "fontFamilies": [
-                {
-                    "fontFamily": "\"Rubik UD\", sans-serif",
-                    "name": "Rubik UD",
-                    "slug": "rubik",
-                    "fontFace": [
-                        {
-                            "fontFamily": "Rubik UD",
-                            "fontWeight": "400",
-                            "fontStyle": "normal",
-                            "fontStretch": "normal",
-                            "src": [ "file:./fonts/Rubik-VariableFont_wght.woff2" ]
-                        },
-                        {
-                            "fontFamily": "Rubik UD",
-                            "fontWeight": "500",
-                            "fontStyle": "normal",
-                            "fontStretch": "normal",
-                            "src": [ "file:./fonts/Rubik-VariableFont_wght.woff2" ]
-                        }
-                    ]
-                }
-            ]
-        }
-    },
-
-    "styles": {
-        "elements": {
-            "h2": {
-                "typography": {
-                    "fontFamily": "Rubik UD",
-                    "fontWeight": "500"
-                }
-            }
-        }
-    }
-}
-```
-</details>
-
-<details>
-<summary>Create Variable WOFF2 Fonts</summary>
-
-```bash
-# Öffne ein Terminal und wechsle in ein beliebiges Verzeichnis (z. B. ~/Sites)
-cd ~/Downloads
-
-# Repo rekursiv klonen (inkl. Brotli-Abhängigkeit)
-git clone --recursive https://github.com/google/woff2.git
-
-# In den geklonten Ordner wechseln
-cd woff2
-
-# woff2 und Abhängigkeiten bauen
-make clean all
-
-# TTF in WOFF2 komprimieren (Beispiel: Datei aus ~/Downloads)
-./woff2_compress ~/Downloads/variable-font.ttf
-
-# Ausgabe zeigt den Pfad und die komprimierte Dateigrösse – die WOFF2-Datei ist nun einsatzbereit
-```
-Quelle: [Henry from online](https://henry.codes/writing/how-to-convert-variable-ttf-font-files-to-woff2/)
-</details>
+- Styling basiert auf SCSS (`src/scss/`)
+- JavaScript liegt in `src/js/`
+- Kompilierte Assets werden aus `/build` geladen
+- Konfiguration von Farben, Typografie und Layout erfolgt über `theme.json`
+- Layout-Breiten: `contentSize: 100%`, `wideSize: 1000px`
 
 
 ## Anforderungen
 - WordPress ≥ 6.5
 - PHP ≥ 8.0
-- Node ≥ 18 (mit npm ≥ 8 für Build-Prozess)
+- Node ≥ 18 (npm ≥ 8)
 
 
 ## Autor
