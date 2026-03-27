@@ -11,7 +11,6 @@
    Wird über den Editor Entry Point geladen.
 \* =============================================================== */
 
-
 /* =============================================================== *\
    Ersetzt den Core-Bildstil "rounded" durch den eigenen Stil
    "ud-rounded-24" und weist ihn neuen Bildblöcken im Editor
@@ -112,6 +111,4 @@ wp.domReady(() => {
 
 	initImageBlockStyle();
 	initButtonBlockStyles();
-console.log("editor");
-
 });
