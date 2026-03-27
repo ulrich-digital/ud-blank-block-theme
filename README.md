@@ -14,30 +14,39 @@ build/  → kompilierte Assets
 ### JavaScript
 
 ```text
+Entry Points:
 src/js/frontend.js    → Frontend
 src/js/editor.js      → Editor
 src/js/development.js → Entwicklung / Hilfsskripte
 ```
 
 ```text
-src/js/frontend/  → Frontend-Module
-src/js/editor/    → Editor-Module
-src/js/shared/    → gemeinsam genutzte Funktionen
+Module:
+src/js/frontend/
+src/js/editor/
+src/js/shared/
 ```
 
 ### CSS / SCSS
 
 ```text
+Entry Points:
 src/scss/style.scss  → Frontend
 src/scss/editor.scss → Editor
 src/scss/blocks.scss → Block-Styles (Frontend + Editor)
 ```
 
+```text
+Struktur:
+src/scss/blocks/
+src/scss/editor/
+```
+
 ## Hinweise
 
-- Entwickelt wird in `src/`
+- Änderungen erfolgen in Modulen, nicht in Entry Points
+- Entry Points bündeln und importieren die Struktur
 - Das Theme verwendet kompilierte Assets
-- `style.css` im Root bleibt für die WordPress-Theme-Informationen bestehen
 
 ## Autor
 
