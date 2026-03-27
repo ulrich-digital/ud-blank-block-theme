@@ -11,42 +11,21 @@ build/  → kompilierte Assets
 
 ## Architektur
 
-### JavaScript
-
 ```text
 Entry Points:
-src/js/frontend.js    → Frontend
-src/js/editor.js      → Editor
-src/js/development.js → Entwicklung / Hilfsskripte
+frontend → Frontend
+editor   → Editor
+shared   → Frontend + Editor
 ```
 
-```text
-Module:
-src/js/frontend/
-src/js/editor/
-src/js/shared/
-```
-
-### CSS / SCSS
-
-```text
-Entry Points:
-src/scss/frontend.scss → Frontend
-src/scss/editor.scss   → Editor
-src/scss/shared.scss   → Frontend + Editor
-```
-
-```text
-Struktur:
-src/scss/frontend/
-src/scss/editor/
-src/scss/shared/
-```
+Diese Struktur gilt für:
+- JavaScript (`src/js/`)
+- SCSS (`src/scss/`)
 
 ## Hinweise
 
 - Änderungen erfolgen in Modulen, nicht in Entry Points
-- Entry Points bündeln und importieren die Struktur
+- Entry Points bündeln die Struktur
 - Das Theme verwendet kompilierte Assets
 
 ## Autor
