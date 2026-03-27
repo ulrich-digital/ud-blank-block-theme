@@ -16,33 +16,70 @@ Full Site Editing (FSE) Block Theme mit klarer src/build-Struktur für SCSS und 
 
 ---
 
+
 ## Architektur
 
 ### JavaScript
 
+Entry Points:
+
 ```text
-src/js/editor.js      → Editor (Backend)
 src/js/frontend.js    → Frontend
+src/js/editor.js      → Editor (Backend)
 src/js/development.js → Entwicklungs-/Hilfsskripte
+```
+
+Diese Dateien bündeln die Logik aus den Unterordnern:
+
+```text
+src/js/frontend/      → Frontend-spezifische Module
+src/js/editor/        → Editor-spezifische Module
+src/js/development/   → Dev-/Debug-Logik
+src/js/shared/        → gemeinsam genutzte Funktionen
+```
 
 ↓ build
 
-build/editor.js
+```text
 build/frontend.js
+build/editor.js
 build/development.js
 ```
 
+---
+
 ### CSS / SCSS
 
+Entry Points:
+
 ```text
-src/scss/editor.scss  → Editor Styles
 src/scss/style.scss   → Frontend Styles
-src/scss/blocks.scss  → Block Styles
+src/scss/editor.scss  → Editor Styles
+src/scss/blocks.scss  → Block Styles (Frontend + Editor)
+```
+
+Diese Dateien bündeln die Struktur aus:
+
+```text
+src/scss/
+  _base.scss
+  _layout.scss
+  _header.scss
+  _footer.scss
+  _page.scss
+  _reset.scss
+  _variables.scss
+  _plugins.scss
+
+src/scss/blocks/      → Block-spezifische Styles
+src/scss/editor/      → Editor-spezifische Styles
+```
 
 ↓ build
 
-build/editor.css
+```text
 build/style.css
+build/editor.css
 build/blocks.css
 ```
 
@@ -62,7 +99,7 @@ Build erfolgt über npm-Scripts in der `package.json`.
 
 - Das Theme lädt ausschliesslich Dateien aus `/build`
 - `src/` dient nur der Entwicklung
-- Konfiguration über `theme.json`
+
 
 ---
 
