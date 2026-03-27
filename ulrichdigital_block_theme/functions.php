@@ -65,17 +65,6 @@ function add_google_analytics_tag() { ?>
 <?php }
 
 
-/* =============================================================== *\
-   Add Core-Block-Styles
-\* =============================================================== */
-if (! function_exists('uldi_add_block_styles')) :
-    function uldi_add_block_styles() {
-        add_theme_support('wp-block-styles');
-    }
-endif;
-//add_action( 'after_setup_theme', 'uldi_add_block_styles' );
-
-
 
 /* =============================================================== *\
    Add Styles
@@ -239,14 +228,6 @@ add_filter('wp_editor_set_quality', function ($quality, $mime_type) {
 }, 10, 2);
 
 
-/* =============================================================== *\
-   Add custom image sizes
-\* =============================================================== */
-function ud_add_custom_image_sizes() {
-    //add_image_size('neuer_bilder_slug', 800, 600, true);
-}
-//add_action('after_setup_theme', 'ud_add_custom_image_sizes', 11);
-
 
 /* =============================================================== *\
    Disable image size threshold
@@ -284,32 +265,6 @@ function backend_entwickelt_mit_herz($text) {
     return ('<span style="color:black;">Entwickelt mit </span><span style="color: red;font-size:20px;vertical-align:-3px">&hearts;</span><span style="color:black;"</span><span> von <a href="https://ulrich.digital" target="_blank">ulrich.digital</a></span>');
 }
 add_filter('admin_footer_text', 'backend_entwickelt_mit_herz');
-
-
-/* =============================================================== *\
-   Regenerate image sizes
-\* =============================================================== */
-/*
-require_once(ABSPATH . 'wp-admin/includes/image.php');
-
-// Put the function in a class to make it more extendable
-class GB_regen_media {
-    public function gb_regenerate($imageId) {
-        $imagePath = wp_get_original_image_path($imageId);
-        if ($imagePath && file_exists($imagePath)) {
-            wp_generate_attachment_metadata($imageId, $imagePath);
-        }
-    }
-}
-
-function ud_regen_load() {
-	$gb_regen_media = new GB_regen_media();
-	//$i = imageID
-	for($i = 32; $i <= 315; $i++):
-		$gb_regen_media->gb_regenerate($i);
-	endfor;
-}*/
-// add_action('init', 'ud_regen_load');
 
 
 /* =============================================================== *\
@@ -393,252 +348,11 @@ add_action('admin_menu', 'ud_remove_menus');
 
 
 /* =============================================================== *\
-   Custom-Post-Types
-\* =============================================================== */
-/*add_action('init','ud_register_post_type_neufarzeuge');
-function ud_register_post_type_neufarzeuge(){
-	$supports = array('title', 'editor', 'thumbnail','post-thumbnails', 'custom-fields', 'revisions');
-	$labels = array(
-		'menu_name' => 'Neufahrzeuge',
-	    'name' => 'Neufahrzeuge',
-	    'add_new' => 'Neufahrzeug hinzuf&uuml;gen',
-	    'add_new_item' => 'Neufahrzeuge hinzuf&uuml;gen',
-		'edit_item' => 'Neufahrzeuge bearbeiten',
-		'new_item' => 'Neues Neufahrzeug',
-		'view_item' => 'Neufahrzeug anzeigen',
-		'search_items' => 'Neufahrzeug suchen',
-		'not_found' => 'Kein Neufahrzeug gefunden',
-		'not_found_in_trash' => 'Kein Neufahrzeug im Papierkorb',
-		);
-	$neufahrzeuge_args = array(
-	    'supports' => $supports,
-	    'labels' => $labels,
-	    'description' => 'Post-Type f&uuml;r Neufahrzeuge',
-	    'public' => true,
-	    'show_in_nav_menus' => true,
-	    'show_in_menu' => true,
-		'show_in_rest' => true,
-	    'has_archive' => true,
-	    'query_var' => true,
-		'menu_icon' => 'dashicons-bell',
-	    'taxonomies' => array('topics', 'category'),
-	    'rewrite' => array(
-	        'slug' => 'neufahrzeug',
-	        'with_front' => true
-	   		),
-		);
-	register_post_type('neufahrzeug', $neufahrzeuge_args);
-}
-*/
-
-
-/* =============================================================== *\
-   Add Custom Block Category to Inserter
-\* =============================================================== */
-/*
-add_filter('block_categories_all', function ($categories) {
-    $new_categories = array();
-    $new_categories[] = array(
-        'slug'  => 'here-comes-the-slug',
-        'title' => 'Here comes the Title'
-    );
-    foreach($categories as $single_categorie):
-        $new_categories[] = $single_categorie; // add WP Core default categories
-    endforeach;
-    return $new_categories;
-});
-*/
-
-
-/* =============================================================== *\
-   Block-Variations
-\* =============================================================== */
-/*
-function prefix_editor_assets() {
-	wp_enqueue_script(
-		'prefix-block-variations',
-		get_template_directory_uri() . '/assets/block-variations.js',
-		array( 'wp-blocks' )
-	);
-}
-add_action( 'enqueue_block_editor_assets', 'prefix_editor_assets' );
-*/
-
-
-/* =============================================================== *\
-   Block-Styles
-\* =============================================================== */
-/*
-if (function_exists('register_block_style')) {
-    register_block_style(
-        'core/media-text',
-        array(
-            'name'         => 'personal',
-            'label'        => 'Patrick stellt sich vor',
-        )
-    );
-}
-*/
-
-
-/* =============================================================== *\
-   Block-Pattern
-\* =============================================================== */
-
-/* =============================================================== *\
-   Page-Template
-\* =============================================================== */
-/*
-function block_template_neufahrzeug() {
-	$page_type_object = get_post_type_object( 'neufahrzeug' );
-	$page_type_object->template = [
-		['acf/impression-images'],
-		['acf/neufahrzeug-short-card'],
-		['acf/anfragebutton'],
-		['core/spacer',['height'=>'10vh']],
-		['core/heading',[
-			'textAlign' => 'center',
-			'placeholder' => "Titel",
-			]
-		],
-		['core/paragraph',['placeholder' => "Short Text"]],
-		['acf/model-images'],
-		['core/paragraph',['placeholder' => "Short Text"]],
-		['acf/neufahrzeug-goodies'],
-		['core/paragraph',['placeholder' => "Short Text"]],
-		['acf/goodie-images'],
-		['core/paragraph',['placeholder' => "Short Text"]],
-		['core/spacer',['height'=>'10vh']],
-		['acf/anfragebutton'],
-		['acf/neufahrzeug-footer-fahrzeuge'],
-	];
-}
-add_action( 'init', 'block_template_neufahrzeug' );
-*/
-
-/* =============================================================== *\
-   Allowed-Blocks
-\* =============================================================== */
-function blacklist_blocks($allowed_blocks, $editor_context) {
-
-    // Alle registrierten Blöcke holen
-    $all_blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
-    $allowed    = array_keys($all_blocks);
-
-    // Zu verbergende Blöcke definieren (Blacklist)
-    $blacklist = array(
-        'core/table',
-        'core/verse',
-        'core/separator',
-        'core/media-text',
-        'core/more',
-        'core/nextpage',
-        'core/archives',
-        'core/calendar',
-        'core/categories',
-        'core/latest-posts',
-        'core/latest-comments',
-        'core/rss',
-        'core/search',
-        'core/social-links',
-        'core/social-icon',
-        'core/social-icons',
-        'core/tag-cloud',
-        'core/navigation',
-        'core/navigation-link',
-        'core/navigation-submenu',
-        'core/query-loop',
-        'core/query-pagination',
-        'core/query-pagination-next',
-        'core/query-pagination-previous',
-        'core/query-pagination-numbers',
-        'core/query-title',
-        'core/query-total',
-        'core/details',
-        'core/avatar',
-        'core/site-title',
-        'core/site-logo',
-        'core/site-tagline',
-        'core/page-list',
-        'core/page-list-item',
-        'core/term-description',
-        'core/legacy-widget',
-        'core/widget-group',
-        'core/post-comments',
-        'core/post-comment',
-        'core/comments-title',
-        'core/comments-query-loop',
-        'core/comment-author-name',
-        'core/comment-content',
-        'core/comment-date',
-        'core/comment-edit-link',
-        'core/comment-reply-link',
-        'core/comment-template',
-    );
-
-    // Blacklist aus der Gesamtliste entfernen
-    $allowed = array_diff($allowed, $blacklist);
-
-    return $allowed;
-}
-//add_filter('allowed_block_types_all', 'blacklist_blocks', 10, 2);
-
-
-/* =============================================================== *\
-
- 	 Frontend
-
-\* =============================================================== */
-
-
-/* =============================================================== *\
-   Add Frontend JavaScripts
-   Add Frontend CSS
-\* =============================================================== */
-/*
-function ud_enqueue_frontend_scripts() {
-    //wp_dequeue_style('global-styles'); // Core-Block-Styles entfernen Achtung, entfernt auch Schrift über theme.json
-    // wp_dequeue_style( 'wp-block-columns' ); // einzelne Core-Block-Styles entfernen
-    // wp_dequeue_style('wp-block-column');
-
-    // Fontawesome, inkl. Brands, Normal und Sharp (duotone ist auskommentiert)
-    wp_enqueue_style('fontawesome_bundle', get_template_directory_uri() . '/assets/fonts/fontawesome.bundle.css', [], filemtime(get_stylesheet_directory() . "/assets/fonts/fontawesome.bundle.css"));
-    wp_enqueue_style('ud-style-main', get_stylesheet_directory_uri() . "/css/style.css", [], filemtime(get_stylesheet_directory() . "/css/style.css"));
-
-    $gsdu = get_stylesheet_directory_uri() . "/assets/js/";
-    $gtd = get_template_directory() . "/assets/js/";
-
-    $path_h1 = 'isotope.pkgd.min.js';
-    $path_h5 = 'ulrich_digital.js';
-    $path_gsap = 'gsap.min.js';
-
-    //wp_enqueue_script( 'eigener_Name', pfad_zum_js, abhaengigkeit (zb jquery zuerst laden), versionsnummer, bool (true=erst im footer laden) );
-    wp_enqueue_script('jquery');
-    wp_enqueue_script('gsap',  $gsdu . $path_gsap, array('jquery'), filemtime($gtd . $path_gsap), false);
-    wp_enqueue_script('isotope',  $gsdu . $path_h1, array('jquery'), filemtime($gtd . $path_h1), false);
-    wp_enqueue_script('ulrich_digital',  $gsdu . $path_h5, array('jquery'), filemtime($gtd . $path_h5), true);
-}
-add_action('wp_enqueue_scripts', 'ud_enqueue_frontend_scripts');
-*/
-
-
-/* =============================================================== *\
-   Title
+   Add is_frontend Class to body
 \* =============================================================== */
 if (!is_admin()):
     add_filter('body_class', function ($classes) {
         return array_merge($classes, array('is_frontend'));
     });
 endif;
-
-
-/* =============================================================== *\
-   404 Redirect
-\* =============================================================== */
-add_action('template_redirect', function () {
-    if (is_404()) {
-        wp_safe_redirect(home_url());
-        exit;
-    }
-});
 ?>
