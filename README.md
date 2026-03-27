@@ -4,121 +4,55 @@ Full Site Editing (FSE) Block Theme mit klarer src/build-Struktur für SCSS und 
 
 ---
 
-## Projektstruktur
+## Struktur
 
 ```text
-/src
-  /js
-    /frontend        → Module für Frontend
-    /editor          → Module für Editor
-    /development     → Dev-/Debug-Module
-    /shared          → gemeinsam genutzte Funktionen
-    frontend.js      → Entry Point (Frontend)
-    editor.js        → Entry Point (Editor)
-    development.js   → Entry Point (Development)
-
-  /scss
-    _base.scss
-    _layout.scss
-    _header.scss
-    _footer.scss
-    _page.scss
-    _reset.scss
-    _variables.scss
-    _plugins.scss
-
-    /blocks          → Block-spezifische Styles
-    /editor          → Editor-spezifische Styles
-
-    style.scss       → Entry Point (Frontend)
-    editor.scss      → Entry Point (Editor)
-    blocks.scss      → Entry Point (Blocks)
-
-/build              → kompilierte CSS- und JS-Dateien (werden geladen)
-/assets             → statische Dateien (Fonts, Bilder etc.)
-/templates          → Block-Templates
-/parts              → Template Parts
+src/    → Entwicklung (SCSS, JS)
+build/  → kompilierte Assets (werden geladen)
 ```
 
 ---
-
 
 ## Architektur
 
 ### JavaScript
 
-Entry Points:
-
 ```text
-src/js/frontend.js    → Frontend
-src/js/editor.js      → Editor (Backend)
-src/js/development.js → Entwicklungs-/Hilfsskripte
+src/js/frontend.js → Frontend
+src/js/editor.js   → Editor
 ```
 
-Diese Dateien bündeln die Logik aus den Unterordnern:
-
+Weitere Logik liegt in:
 ```text
-src/js/frontend/      → Frontend-spezifische Module
-src/js/editor/        → Editor-spezifische Module
-src/js/development/   → Dev-/Debug-Logik
-src/js/shared/        → gemeinsam genutzte Funktionen
+src/js/frontend/
+src/js/editor/
+src/js/shared/
 ```
 
-↓ build
+↓
 
 ```text
 build/frontend.js
 build/editor.js
-build/development.js
 ```
 
 ---
 
 ### CSS / SCSS
 
-Entry Points:
-
 ```text
-src/scss/style.scss   → Frontend Styles
-src/scss/editor.scss  → Editor Styles
-src/scss/blocks.scss  → Block Styles (Frontend + Editor)
+src/scss/style.scss  → Frontend
+src/scss/editor.scss → Editor
+src/scss/blocks.scss → Blocks (Frontend + Editor)
 ```
 
-Diese Dateien bündeln die Struktur aus:
-
-```text
-src/scss/
-  _base.scss
-  _layout.scss
-  _header.scss
-  _footer.scss
-  _page.scss
-  _reset.scss
-  _variables.scss
-  _plugins.scss
-
-src/scss/blocks/      → Block-spezifische Styles
-src/scss/editor/      → Editor-spezifische Styles
-```
-
-↓ build
+↓
 
 ```text
 build/style.css
 build/editor.css
 build/blocks.css
 ```
-
----
-
-## Build
-
-Build erfolgt über npm-Scripts in der `package.json`.
-
-- SCSS → CSS
-- JS → gebündelte Dateien
-- Ausgabe in `/build`
-
 ---
 
 ## Hinweise
