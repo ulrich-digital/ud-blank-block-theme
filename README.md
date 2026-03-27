@@ -7,11 +7,37 @@ Full Site Editing (FSE) Block Theme mit klarer src/build-Struktur für SCSS und 
 ## Projektstruktur
 
 ```text
-/src        → SCSS und JS (Quellcode)
-/build      → kompilierte CSS- und JS-Dateien (werden geladen)
-/assets     → statische Dateien (Fonts, Bilder etc.)
-/templates  → Block-Templates
-/parts      → Template Parts
+/src
+  /js
+    /frontend        → Module für Frontend
+    /editor          → Module für Editor
+    /development     → Dev-/Debug-Module
+    /shared          → gemeinsam genutzte Funktionen
+    frontend.js      → Entry Point (Frontend)
+    editor.js        → Entry Point (Editor)
+    development.js   → Entry Point (Development)
+
+  /scss
+    _base.scss
+    _layout.scss
+    _header.scss
+    _footer.scss
+    _page.scss
+    _reset.scss
+    _variables.scss
+    _plugins.scss
+
+    /blocks          → Block-spezifische Styles
+    /editor          → Editor-spezifische Styles
+
+    style.scss       → Entry Point (Frontend)
+    editor.scss      → Entry Point (Editor)
+    blocks.scss      → Entry Point (Blocks)
+
+/build              → kompilierte CSS- und JS-Dateien (werden geladen)
+/assets             → statische Dateien (Fonts, Bilder etc.)
+/templates          → Block-Templates
+/parts              → Template Parts
 ```
 
 ---
