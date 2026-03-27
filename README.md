@@ -1,56 +1,76 @@
 # UD Theme: Blank Block Theme
 
-Ein modulares Full-Site-Editing-Theme für WordPress, optimiert für die Blockentwicklung mit Build-Prozess für CSS und JavaScript sowie einer klaren src/build-Struktur.
+Full Site Editing (FSE) Block Theme mit klarer src/build-Struktur für SCSS und JavaScript.
 
-## Funktionen
-- Vollständig kompatibel mit WordPress Full Site Editing (FSE)
-- Eigene Farbpalette und Verlaufsdefinitionen
-- Integration von Webfonts über `theme.json`
-- Unterstützt benutzerdefinierte Templates (z. B. Single ohne Titel)
-- Strukturierter Build-Prozess für SCSS und JavaScript
+---
 
 ## Projektstruktur
+
 ```text
-/src        → Entwicklungsdateien (SCSS, JS)
-/build      → kompilierte Assets (CSS, JS)
+/src        → SCSS und JS (Quellcode)
+/build      → kompilierte CSS- und JS-Dateien (werden geladen)
 /assets     → statische Dateien (Fonts, Bilder etc.)
 /templates  → Block-Templates
 /parts      → Template Parts
 ```
 
+---
 
-## Build-Prozess
+## Architektur
 
-```bash
-# Assets einmalig bauen
-npm run build
+### JavaScript
 
-# Watch-Modus für Entwicklung
-npm run watch
+```text
+src/js/editor.js      → Editor (Backend)
+src/js/frontend.js    → Frontend
+src/js/development.js → Entwicklungs-/Hilfsskripte
+
+↓ build
+
+build/editor.js
+build/frontend.js
+build/development.js
 ```
 
-- SCSS wird zu CSS kompiliert
-- JavaScript wird gebündelt und optimiert
-- Ausgabe erfolgt ausschliesslich im `/build`-Verzeichnis
+### CSS / SCSS
 
-## Technische Hinweise
+```text
+src/scss/editor.scss  → Editor Styles
+src/scss/style.scss   → Frontend Styles
+src/scss/blocks.scss  → Block Styles
 
-- Styling basiert auf SCSS (`src/scss/`)
-- JavaScript liegt in `src/js/`
-- Kompilierte Assets werden aus `/build` geladen
-- Konfiguration von Farben, Typografie und Layout erfolgt über `theme.json`
-- Layout-Breiten: `contentSize: 100%`, `wideSize: 1000px`
+↓ build
 
+build/editor.css
+build/style.css
+build/blocks.css
+```
 
-## Anforderungen
-- WordPress ≥ 6.5
-- PHP ≥ 8.0
-- Node ≥ 18 (npm ≥ 8)
+---
 
+## Build
+
+Build erfolgt über npm-Scripts in der `package.json`.
+
+- SCSS → CSS
+- JS → gebündelte Dateien
+- Ausgabe in `/build`
+
+---
+
+## Hinweise
+
+- Das Theme lädt ausschliesslich Dateien aus `/build`
+- `src/` dient nur der Entwicklung
+- Konfiguration über `theme.json`
+
+---
 
 ## Autor
+
 [ulrich.digital gmbh](https://ulrich.digital)
 
 ## Lizenz
-GPL v2 or later
-[https://www.gnu.org/licenses/gpl-2.0.html](https://www.gnu.org/licenses/gpl-2.0.html)
+
+GPL v2 or later  
+https://www.gnu.org/licenses/gpl-2.0.html
