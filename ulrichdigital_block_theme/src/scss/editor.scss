@@ -1,16 +1,10 @@
 /* =============================================================== *\
-   Editor Styles
+   Editor Entry Point
 
-   Nur für den Block-Editor (Backend).
+   Einstiegspunkt für alle Editor-Styles.
 
-   Zweck:
-   - Darstellung im Editor anpassen
-   - UI-Korrekturen
-   - Editor-spezifisches Verhalten
-
-   Keine:
-   - Frontend-Styles
-   - Doppeldefinitionen aus frontend.scss
+   Wird nach build/editor.css kompiliert
+   und im Editor geladen.
 \* =============================================================== */
 
-@use "editor/admin";
+@use "editor/_base";

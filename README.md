@@ -31,15 +31,16 @@ src/js/shared/
 
 ```text
 Entry Points:
-src/scss/style.scss  → Frontend
-src/scss/editor.scss → Editor
-src/scss/blocks.scss → Block-Styles (Frontend + Editor)
+src/scss/frontend.scss → Frontend
+src/scss/editor.scss   → Editor
+src/scss/shared.scss   → Frontend + Editor
 ```
 
 ```text
 Struktur:
-src/scss/blocks/
+src/scss/frontend/
 src/scss/editor/
+src/scss/shared/
 ```
 
 ## Hinweise
