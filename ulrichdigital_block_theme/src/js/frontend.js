@@ -8,4 +8,3 @@
 \* =============================================================== */
 
 import "./frontend/frontend";
-import "./shared/shared";

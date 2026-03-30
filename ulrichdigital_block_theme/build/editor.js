@@ -61,6 +61,6 @@
     window.udEditorInitialized = true;
     initImageBlockStyle();
     initButtonBlockStyles();
-    console.log("editor");
+    //console.log("editor");
   });
 })();

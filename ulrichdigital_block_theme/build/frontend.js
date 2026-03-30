@@ -57,5 +57,6 @@
   document.addEventListener("DOMContentLoaded", () => {
     initHeaderAnimation();
     initContentAnimations();
+	//console.log("frontend.js");
   });
 })();

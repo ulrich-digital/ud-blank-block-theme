@@ -12,3 +12,4 @@
    Wird von Frontend- und Editor-Skripten importiert.
 \* =============================================================== */
 
+//console.log("shared.js");
