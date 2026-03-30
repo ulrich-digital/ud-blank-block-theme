@@ -132,19 +132,22 @@ add_action('wp_enqueue_scripts', function () {
 });
 
 /* Editor */
-add_action('enqueue_block_editor_assets', function () {
-	wp_enqueue_script(
-		'ud-theme-editor',
-		get_stylesheet_directory_uri() . '/build/editor.js',
-		array(
-			'wp-blocks',
-			'wp-dom-ready',
-			'wp-data',
-		),
-		filemtime(get_stylesheet_directory() . '/build/editor.js'),
-		true
-	);
+add_action('enqueue_block_assets', function () {
+	if (is_admin()) {
+		wp_enqueue_script(
+			'ud-theme-editor',
+			get_stylesheet_directory_uri() . '/build/editor.js',
+			array(
+				'wp-blocks',
+				'wp-dom-ready',
+				'wp-data',
+			),
+			filemtime(get_stylesheet_directory() . '/build/editor.js'),
+			true
+		);
+	}
 });
+
 
 /* =============================================================== *\
    Custom Admin-Logo
