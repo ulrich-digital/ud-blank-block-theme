@@ -66,7 +66,6 @@ function add_google_analytics_tag() { ?>
 
 
 
-/* =============================================================== *\
    Add Styles
 \* =============================================================== */
 
@@ -75,7 +74,7 @@ add_action('wp_enqueue_scripts', function () {
 	wp_enqueue_style(
 		'ud-theme-frontend',
 		get_stylesheet_directory_uri() . '/build/frontend.css',
-		array(),
+		array('ud-theme-shared'),
 		filemtime(get_stylesheet_directory() . '/build/frontend.css')
 	);
 });
@@ -93,7 +92,7 @@ add_action('enqueue_block_assets', function () {
 	wp_enqueue_style(
 		'ud-theme-shared',
 		get_stylesheet_directory_uri() . '/build/shared.css',
-		array(),
+		array('ud-fontawesome'),
 		filemtime(get_stylesheet_directory() . '/build/shared.css')
 	);
 
@@ -102,7 +101,7 @@ add_action('enqueue_block_assets', function () {
 		wp_enqueue_style(
 			'ud-theme-editor',
 			get_stylesheet_directory_uri() . '/build/editor.css',
-			array(),
+			array('ud-theme-shared'),
 			filemtime(get_stylesheet_directory() . '/build/editor.css')
 		);
 	}
@@ -159,6 +158,7 @@ add_action('enqueue_block_editor_assets', function () {
 	);
 
 });
+
 
 
 /* =============================================================== *\
