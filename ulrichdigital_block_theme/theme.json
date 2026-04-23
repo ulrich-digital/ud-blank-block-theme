@@ -17,6 +17,7 @@
 			"palette": []
 		},
 		"typography": {
+			"customFontSize": false,
 			"dropCap": false,
 			"fontFamilies": [
 				{
