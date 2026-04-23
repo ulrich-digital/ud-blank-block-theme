@@ -1,6 +1,9 @@
 {
 	"version": 3,
 	"settings": {
+		"align": {
+    		"wide": true
+    	},
 		"layout": {
 			"contentSize": "720px",
 			"wideSize": "1100px"
