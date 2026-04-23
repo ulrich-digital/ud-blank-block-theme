@@ -1,6 +1,11 @@
 @charset "UTF-8";
 /* =============================================================== *\
-   Variablen
+   Frontend Entry Point
+
+   Einstiegspunkt für alle Frontend-Styles.
+
+   Wird nach build/style.css kompiliert
+   und im Frontend geladen.
 \* =============================================================== */
 /* =============================================================== *\
    Variablen (Farben, Spacing, Radius, Shadow)
@@ -34,6 +39,65 @@
   --ud-shadow-500: 0 4px 8px rgba(0, 0, 0, 0.14);
   --ud-shadow-700: 0 6px 12px rgba(0, 0, 0, 0.18);
   --ud-shadow-900: 0 8px 16px rgba(0, 0, 0, 0.22);
+  /* =============================================================== *\
+         UI-Farbschema
+
+         Übersicht und Varianten:
+         ulrichdigital_block_theme > color_system.html
+     \* =============================================================== */
+  /* Positive (Green) */
+  --ud-positive-100: #fbfefc;
+  --ud-positive-200: #e6f9ec;
+  --ud-positive-300: #d1f3da;
+  --ud-positive-400: #b0ebc6;
+  --ud-positive-500: #30a46c;
+  --ud-positive-600: #299764;
+  --ud-positive-700: #18794e;
+  --ud-positive-800: #193b2d;
+  --ud-positive-900: #0d1912;
+  /* Warning (Amber) */
+  --ud-warning-100: #fefdfb;
+  --ud-warning-200: #fef6e7;
+  --ud-warning-300: #ffedc7;
+  --ud-warning-400: #ffd386;
+  --ud-warning-500: #f5a623;
+  --ud-warning-600: #e08d00;
+  --ud-warning-700: #ad5700;
+  --ud-warning-800: #5f2a00;
+  --ud-warning-900: #341500;
+  /* Error (Red) */
+  --ud-error-100: #fffcfc;
+  --ud-error-200: #fef0ef;
+  --ud-error-300: #fdd8d7;
+  --ud-error-400: #fbb5b4;
+  --ud-error-500: #e5484d;
+  --ud-error-600: #d93d42;
+  --ud-error-700: #cd2b31;
+  --ud-error-800: #381316;
+  --ud-error-900: #1f0a0a;
+  /* Info (Blue) */
+  --ud-info-100: #fbfdff;
+  --ud-info-200: #edf6ff;
+  --ud-info-300: #e1f0ff;
+  --ud-info-400: #cee7fe;
+  --ud-info-500: #0091ff;
+  --ud-info-600: #0880ea;
+  --ud-info-700: #0b68cb;
+  --ud-info-800: #113264;
+  --ud-info-900: #0a0e1c;
+  /* Neutral (Gray) */
+  --ud-neutral-100: #fcfcfc;
+  --ud-neutral-200: #f8f9fa;
+  --ud-neutral-300: #f1f3f5;
+  --ud-neutral-400: #e6e8eb;
+  --ud-neutral-500: #9ba1a6;
+  --ud-neutral-600: #6c7278;
+  --ud-neutral-700: #464b50;
+  --ud-neutral-800: #11181c;
+  --ud-neutral-900: #0d0f11;
+  /* =============================================================== *\
+      Layout & Spacing
+  \* =============================================================== */
   /* Radius */
   --ud-radius-100: 8px;
   --ud-radius-200: 10px;
@@ -56,9 +120,6 @@
     --ud-site-inline-spacing: 30px;
   }
 }
-/* =============================================================== *\
-   Reset & Base
-\* =============================================================== */
 /* =============================================================== *\
    CSS-Reset
 \* =============================================================== */
@@ -340,14 +401,19 @@ button {
 }
 
 /* =============================================================== *\
-   Variablen
+   Frontend Entry Point
+
+   Einstiegspunkt für alle Frontend-Styles.
+
+   Wird nach build/style.css kompiliert
+   und im Frontend geladen.
 \* =============================================================== */
 /* =============================================================== *\
    Basis HTML-Elemente
 \* =============================================================== */
 body {
   background: var(--ud-theme-800);
-  font-family: "Inter", sans-serif;
+  font-family: "Quicksand", sans-serif !important;
   font-size: var(--wp--preset--font-size--base);
   color: var(--ud-theme-100);
   font-optical-sizing: auto;
@@ -358,33 +424,71 @@ body {
 }
 
 /* =============================================================== *\
-   Layout & Struktur
+   Formularfelder
 \* =============================================================== */
+input,
+textarea {
+  margin: 10px 20px;
+  border: none;
+  padding: 10px 16px;
+  line-height: 1em;
+}
+
+input:focus,
+textarea:focus {
+  border: none;
+  outline: none;
+}
+
+input[type=submit] {
+  cursor: pointer;
+  border: 1px solid;
+  border-radius: 100px;
+  padding: 0.7rem 1.4rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
 /* =============================================================== *\
-   Variablen
+   Frontend Entry Point
+
+   Einstiegspunkt für alle Frontend-Styles.
+
+   Wird nach build/style.css kompiliert
+   und im Frontend geladen.
 \* =============================================================== */
 /* =============================================================== *\
    Layout
 \* =============================================================== */
-.entry-content {
+body .wp-site-blocks > .entry-content.wp-block-post-content {
+  margin-top: clamp(180px, 10vw, 200px);
   padding-right: var(--ud-site-inline-spacing);
   padding-left: var(--ud-site-inline-spacing);
 }
+body .wp-site-blocks > .entry-content.wp-block-post-content > .alignfull {
+  width: calc(100% + var(--ud-site-inline-spacing) * 2);
+  max-width: none;
+  margin-right: calc(var(--ud-site-inline-spacing) * -1);
+  margin-left: calc(var(--ud-site-inline-spacing) * -1);
+}
 
 /* =============================================================== *\
-   Seitentitel und Content-Abstand
+   Seitentitel
 \* =============================================================== */
 body .wp-site-blocks .wp-block-post-title {
-  margin-top: clamp(200px, 10vw, 180px);
+  width: 100%;
+  max-width: calc(var(--wp--style--global--content-size) + var(--ud-site-inline-spacing) * 2);
+  margin-top: clamp(180px, 10vw, 200px);
   margin-right: auto;
   margin-bottom: 5.5rem;
   margin-left: auto;
   padding-right: var(--ud-site-inline-spacing);
   padding-left: var(--ud-site-inline-spacing);
-  max-width: var(--wp--style--global--content-size);
 }
-body .wp-site-blocks > .entry-content.wp-block-post-content {
-  margin-top: clamp(200px, 10vw, 180px);
+body .wp-site-blocks {
+  /* =============================================================== *\
+            Seitentitel und Content-Abstand
+        \* =============================================================== */
 }
 body .wp-site-blocks > .wp-block-post-title + .entry-content.wp-block-post-content {
   margin-top: 0;
@@ -416,7 +520,12 @@ body .wp-site-blocks > .wp-block-post-title + .entry-content.wp-block-post-conte
 }
 
 /* =============================================================== *\
-   Variablen
+   Frontend Entry Point
+
+   Einstiegspunkt für alle Frontend-Styles.
+
+   Wird nach build/style.css kompiliert
+   und im Frontend geladen.
 \* =============================================================== */
 /* =============================================================== *\
    Header
@@ -461,7 +570,12 @@ header.wp-block-template-part.is-hidden {
 }
 
 /* =============================================================== *\
-   Variablen
+   Frontend Entry Point
+
+   Einstiegspunkt für alle Frontend-Styles.
+
+   Wird nach build/style.css kompiliert
+   und im Frontend geladen.
 \* =============================================================== */
 /* =============================================================== *\
    Footer
@@ -471,16 +585,23 @@ footer {
 }
 
 /* =============================================================== *\
-   Variablen
+   Frontend Entry Point
+
+   Einstiegspunkt für alle Frontend-Styles.
+
+   Wird nach build/style.css kompiliert
+   und im Frontend geladen.
 \* =============================================================== */
 /* =============================================================== *\
    Page-Styles
 \* =============================================================== */
 /* =============================================================== *\
-   Plugins
-\* =============================================================== */
-/* =============================================================== *\
-   Variablen
+   Frontend Entry Point
+
+   Einstiegspunkt für alle Frontend-Styles.
+
+   Wird nach build/style.css kompiliert
+   und im Frontend geladen.
 \* =============================================================== */
 /* =============================================================== *\
    Name des Plugins
