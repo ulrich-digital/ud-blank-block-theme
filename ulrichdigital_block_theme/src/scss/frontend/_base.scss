@@ -6,9 +6,10 @@
 body {
 	background: variables.$color-background;
 
-	font-family: "Inter", sans-serif;
-	font-size: var(--wp--preset--font-size--base);
+	font-family: "Quicksand", sans-serif!important;
+	font-size: 1.125rem;
 	color: variables.$color-text;
+
 	font-optical-sizing: auto;
 	font-kerning: normal;
 	font-feature-settings: "kern" 1;
