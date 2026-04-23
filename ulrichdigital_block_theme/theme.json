@@ -43,14 +43,22 @@
                         }
                     ]
                 }
+            ],
+			,
+            "fontSizes": [
+                {
+                    "slug": "base",
+                    "size": "1.125rem",
+                    "name": "Base"
+                }
             ]
-		}
-	},
-
-	"styles": {
-		"typography": {
+        }
+    },
+    "styles": {
+        "typography": {
 			"fontFamily": "var(--wp--preset--font-family--rubik)",
-			"color": "black"
-		}
-	}
+            "fontSize": "var(--wp--preset--font-size--base)",
+            "lineHeight": "1.25"
+        }
+    }
 }
