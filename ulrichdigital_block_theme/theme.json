@@ -1,48 +1,17 @@
 {
 	"version": 3,
-	"customTemplates":[
-		{
-			"name": "singular_without_title",
-			"title": "Single ohne Titel",
-			"postTypes": [
-				"page",
-				"post"
-			]
-		}
-	],
 	"settings": {
 		"layout": {
-			"contentSize": "100%",
-			"wideSize": "1000px"
+			"contentSize": "720px",
+			"wideSize": "1100px"
 		},
 		"spacing": {
 			"units": [ "px", "em", "rem", "vw", "%" ]
 		},
 		"color": {
-			"palette": [
-                    {
-                        "slug": "petrol_color",
-                        "color": "#014b49",
-                        "name": "Petrol Color"
-                    },
-					{
-						"slug": "petrol_background",
-						"color": "#C3E3E1",
-						"name": "Petrol Background"
-					},
-                    {
-                        "slug": "yellow",
-                        "color": "#EEEADD",
-                        "name": "Yellow"
-                    }
-                ],
-			"gradients": [
-				{
-                	"slug": "sky",
-                    "gradient": "linear-gradient(#001c35 0%, #073258 100%)",
-                    "name": "Sky"
-                }
-			]
+			"custom": false,
+			"customGradient": false,
+			"palette": []
 		},
 		"typography": {
 			"dropCap": false,
