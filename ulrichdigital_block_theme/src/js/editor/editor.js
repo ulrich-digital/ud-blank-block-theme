@@ -109,6 +109,6 @@ wp.domReady(() => {
 
 	window.udEditorInitialized = true;
 
-	initImageBlockStyle();
-	initButtonBlockStyles();
+	//initImageBlockStyle();
+	//initButtonBlockStyles();
 });
