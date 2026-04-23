@@ -1,6 +1,60 @@
 @use "variables"; // SIC!
 
 /* =============================================================== *\
+   Title
+\* =============================================================== */
+
+h1.wp-block-post-title {
+	font-size: 2.8rem; // ~50px
+	line-height: 1.1;
+	margin-top: 0;
+	margin-bottom: 1.5rem;
+}
+
+.wp-block-heading {
+	@at-root h1#{&} {
+font-size: 2.8rem; // ~50px
+	line-height: 1.1;
+	margin-bottom: 1.5rem;
+	}
+
+	@at-root h2#{&} {
+		font-size: 2.2rem;
+		line-height: 1.15;
+		margin-top: 2.5rem;
+		margin-bottom: 1.25rem;
+	}
+
+	@at-root h3#{&} {
+		font-size: 1.8rem;
+		line-height: 1.2;
+		margin-top: 2rem;
+		margin-bottom: 1rem;
+	}
+
+	@at-root h4#{&} {
+		font-size: 1.4rem;
+		line-height: 1.25;
+		margin-top: 1.5rem;
+		margin-bottom: 0.75rem;
+	}
+
+	@at-root h5#{&} {
+		font-size: 1.2rem;
+		line-height: 1.3;
+		margin-top: 1.25rem;
+		margin-bottom: 0.5rem;
+	}
+
+	@at-root h6#{&} {
+		font-size: 1.125rem;
+		line-height: 1.35;
+		margin-top: 1rem;
+		margin-bottom: 0.5rem;
+	}
+}
+
+/* =============================================================== *\
     Image
     Block-Style: abgerundete Ecken
 \* =============================================================== */
